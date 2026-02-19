@@ -14,7 +14,6 @@
       --green-2: #b8e34f;
       --green-3: #7fb82b;
       --green-4: #2f7a1f;
-      --bg: #0f0f10;
       --muted: #bfc0c0;
       --max-width: 1100px;
       --radius: 12px;
@@ -24,7 +23,6 @@
     body{
       margin:0;
       font-family: "Poppins", system-ui;
-      color:#0b0b0b;
       background: linear-gradient(180deg,#07110a 0%, #081512 100%);
     }
 
@@ -39,24 +37,29 @@
       display:flex;
       gap:20px;
       align-items:center;
-      background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      background: rgba(255,255,255,0.03);
       border-radius:var(--radius);
       padding:18px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.45);
-      border:1px solid rgba(255,255,255,0.03);
     }
 
+    /* LOGO IMAGEN */
     .logo{
       width:120px;
       height:120px;
       border-radius:14px;
-      background: linear-gradient(180deg,var(--green-2),var(--green-3));
-      display:grid;
-      place-items:center;
-      color:white;
-      font-weight:700;
-      font-family:"Oswald";
-      font-size:22px;
+      background:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      padding:10px;
+    }
+
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
     }
 
     .brand{
@@ -95,7 +98,6 @@
       cursor:pointer;
       border:none;
       transition:all .25s ease;
-      text-decoration:none;
     }
 
     .btn-primary{
@@ -112,40 +114,6 @@
       transform:translateY(-2px);
     }
 
-    .grid{
-      margin-top:22px;
-      display:grid;
-      grid-template-columns: 1fr 420px;
-      gap:20px;
-    }
-
-    .card{
-      background: rgba(255,255,255,0.02);
-      padding:18px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.02);
-      color:#e8e8e8;
-    }
-
-    .gym-photo{
-      min-height:320px;
-      border-radius:10px;
-      background-size:cover;
-      background-position:center;
-      display:flex;
-      flex-direction:column;
-      justify-content:flex-end;
-    }
-
-    .photo-tag{
-      padding:12px;
-      background:linear-gradient(180deg, rgba(0,0,0,0.00), rgba(0,0,0,0.45));
-      color:#fff;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-    }
-
     footer{
       margin-top:40px;
       padding:16px;
@@ -156,8 +124,8 @@
     }
 
     @media (max-width:980px){
-      .grid{grid-template-columns:1fr;}
       .hero{flex-direction:column;align-items:flex-start}
+      .logo{width:100px;height:100px}
     }
   </style>
 </head>
@@ -165,7 +133,11 @@
   <main class="container">
 
     <section class="hero">
-      <div class="logo">GYM</div>
+      
+      <!-- LOGO ACTUAL -->
+      <div class="logo">
+        <img src="https://iili.io/q2yDmFt.th.png" alt="Logo Gym Line">
+      </div>
 
       <div>
         <div class="brand">ENTRENÁ SEGURO · ENTRENÁ INTELIGENTE</div>
@@ -177,42 +149,20 @@
           <a class="btn btn-outline" href="#horarios">Ver horarios y clases</a>
         </div>
       </div>
+
     </section>
 
-    <section class="grid">
-      <div class="card">
-        <h3 style="font-family:'Oswald'">Planes</h3>
-        <div style="margin-top:10px">
-          <div style="font-size:26px;font-family:'Oswald';color:var(--green-1)">$4.200</div>
-          <div class="muted">Mensual — Acceso libre</div>
-        </div>
-      </div>
-
-      <aside>
-        <div class="gym-photo card" style="background-image: url('https://images.unsplash.com/photo-1546484959-f8b0c4c10be6?auto=format&fit=crop&w=1200&q=60');">
-          <div class="photo-tag">
-            <div>
-              <div style="font-weight:700">Clases dinámicas y completas</div>
-            </div>
-            <div>
-              <a class="btn btn-primary" href="https://wa.me/541159117171" target="_blank">Reservar</a>
-            </div>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <section class="card" style="margin-top:20px">
-      <h3 style="font-family:'Oswald'">Contacto</h3>
-      <div class="muted">📍 Rodríguez Peña 948, San Miguel</div>
-      <div class="muted">📞 11 5911 7171</div>
+    <section style="margin-top:30px">
+      <h3 style="font-family:'Oswald'; color:white;">Contacto</h3>
+      <div style="color:var(--muted)">📍 Rodríguez Peña 948, San Miguel</div>
+      <div style="color:var(--muted)">📞 11 5911 7171</div>
 
       <div style="margin-top:12px">
         <a class="btn btn-primary" href="https://wa.me/541159117171" target="_blank">Chatear por WhatsApp</a>
       </div>
 
       <div style="margin-top:20px">
-        <h4 style="font-family:'Oswald'">Síguenos</h4>
+        <h4 style="font-family:'Oswald'; color:white;">Síguenos</h4>
         <a class="btn btn-outline"
            href="https://www.instagram.com/_gymline_?igsh=b2phYjMzenh3MnZn"
            target="_blank"
