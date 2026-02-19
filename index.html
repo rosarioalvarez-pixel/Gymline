@@ -117,6 +117,96 @@
       box-shadow:0 12px 30px rgba(0,0,0,0.6);
     }
 
+    /* ====== CARRUSEL DE VIDEOS (agregado) ====== */
+    .videos-carousel{
+      margin-top:28px;
+    }
+
+    .carousel-wrapper{
+      position:relative;
+      width:100%;
+      max-width:900px;
+      height:320px;
+      margin:0 auto;
+      border-radius:var(--radius);
+      overflow:hidden;
+      background: rgba(255,255,255,0.02);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    }
+
+    .carousel-wrapper .slide{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      transition:opacity .6s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      pointer-events:none;
+    }
+
+    .carousel-wrapper .slide.active{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .carousel-wrapper video{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      background:#000;
+    }
+
+    .carousel-controls{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:12px;
+      margin-top:12px;
+    }
+
+    .carousel-controls button{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.08);
+      color:var(--muted);
+      padding:6px 10px;
+      border-radius:8px;
+      cursor:pointer;
+      backdrop-filter: blur(4px);
+    }
+
+    .carousel-dots{
+      display:flex;
+      gap:8px;
+    }
+
+    .carousel-dots button{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.12);
+      border:none;
+      padding:0;
+      cursor:pointer;
+    }
+
+    .carousel-dots button.active{
+      background:var(--green-1);
+      box-shadow:0 0 6px rgba(123,195,86,0.4);
+    }
+
+    @media(max-width:900px){
+      .hero{
+        flex-direction:column;
+        text-align:center;
+      }
+      .carousel-wrapper{
+        height:220px;
+      }
+    }
+    /* ====== fin carrusel agregado ====== */
+
     footer{
       margin-top:40px;
       padding:16px;
@@ -162,6 +252,53 @@
       <img src="https://iili.io/q3dRaSV.md.png" alt="Planes y precios Gym Line">
     </section>
 
+    <!-- CARRUSEL DE VIDEOS (SECCIÓN AGREGADA) -->
+    <section id="videos-carousel" class="videos-carousel" aria-label="Carrusel de videos">
+      <div class="carousel-wrapper" role="region" aria-roledescription="carousel" aria-label="Videos">
+        <div class="slide active" data-index="0">
+          <video
+            src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4"
+            muted
+            playsinline
+            preload="metadata"
+            crossorigin="anonymous"
+            ></video>
+        </div>
+
+        <div class="slide" data-index="1">
+          <video
+            src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4"
+            muted
+            playsinline
+            preload="metadata"
+            crossorigin="anonymous"
+            ></video>
+        </div>
+
+        <div class="slide" data-index="2">
+          <video
+            src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4"
+            muted
+            playsinline
+            preload="metadata"
+            crossorigin="anonymous"
+            ></video>
+        </div>
+      </div>
+
+      <div class="carousel-controls" aria-hidden="false">
+        <button id="carousel-prev" aria-label="Anterior">‹</button>
+
+        <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Navegación de videos">
+          <button data-index="0" class="active" aria-label="Video 1" role="tab" aria-selected="true"></button>
+          <button data-index="1" aria-label="Video 2" role="tab" aria-selected="false"></button>
+          <button data-index="2" aria-label="Video 3" role="tab" aria-selected="false"></button>
+        </div>
+
+        <button id="carousel-next" aria-label="Siguiente">›</button>
+      </div>
+    </section>
+
     <footer>
       <div>© Gym Line — Entrená seguro, entrená inteligente</div>
       <div>
@@ -175,5 +312,123 @@
     </footer>
 
   </main>
+
+  <script>
+    (function(){
+      const wrapper = document.querySelector('.carousel-wrapper');
+      const slides = Array.from(wrapper.querySelectorAll('.slide'));
+      const dotsContainer = document.getElementById('carousel-dots');
+      const dots = Array.from(dotsContainer.querySelectorAll('button'));
+      const prevBtn = document.getElementById('carousel-prev');
+      const nextBtn = document.getElementById('carousel-next');
+
+      let current = 0;
+      let autoplayInterval = 7000; // tiempo entre slides (ms)
+      let timerId = null;
+      let tabVisible = true;
+
+      function activateSlide(index){
+        if(index < 0) index = slides.length - 1;
+        if(index >= slides.length) index = 0;
+        // update classes
+        slides.forEach((s,i) => {
+          s.classList.toggle('active', i === index);
+        });
+        dots.forEach((d,i) => {
+          d.classList.toggle('active', i === index);
+          d.setAttribute('aria-selected', i === index ? 'true' : 'false');
+        });
+        current = index;
+        playCurrentVideo();
+      }
+
+      function playCurrentVideo(){
+        slides.forEach((s,i) => {
+          const v = s.querySelector('video');
+          if(!v) return;
+          if(i === current){
+            // try to play visible video
+            v.currentTime = 0;
+            const playPromise = v.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(()=> {
+                // autoplay may be blocked; nothing to do, video will remain paused
+              });
+            }
+            // if video ends naturally, advance
+            v.onended = () => {
+              goNext();
+            };
+          } else {
+            // pause others
+            try { v.pause(); } catch(e){}
+          }
+        });
+      }
+
+      function goNext(){
+        activateSlide(current + 1);
+        resetTimer();
+      }
+
+      function goPrev(){
+        activateSlide(current - 1);
+        resetTimer();
+      }
+
+      function resetTimer(){
+        if(timerId) clearInterval(timerId);
+        timerId = setInterval(() => {
+          if(tabVisible) goNext();
+        }, autoplayInterval);
+      }
+
+      // dot clicks
+      dots.forEach(d => {
+        d.addEventListener('click', (e) => {
+          const idx = Number(d.getAttribute('data-index'));
+          activateSlide(idx);
+          resetTimer();
+        });
+      });
+
+      prevBtn.addEventListener('click', goPrev);
+      nextBtn.addEventListener('click', goNext);
+
+      // Pause autoplay when tab not visible
+      document.addEventListener('visibilitychange', () => {
+        tabVisible = document.visibilityState === 'visible';
+        if(!tabVisible){
+          // pause all videos
+          slides.forEach(s => {
+            const v = s.querySelector('video');
+            if(v) try{ v.pause(); }catch(e){}
+          });
+        } else {
+          playCurrentVideo();
+        }
+      });
+
+      // start
+      activateSlide(0);
+      resetTimer();
+
+      // accessibility: pause on hover / focus to avoid surprise sound (though muted)
+      wrapper.addEventListener('mouseover', () => {
+        if(timerId) clearInterval(timerId);
+      });
+      wrapper.addEventListener('mouseleave', () => {
+        resetTimer();
+      });
+
+      // Ensure videos are muted to allow autoplay in most browsers (already set in markup)
+      // If any video element is not muted, set it here:
+      slides.forEach(s => {
+        const v = s.querySelector('video');
+        if(v) v.muted = true;
+      });
+
+    })();
+  </script>
 </body>
 </html>
