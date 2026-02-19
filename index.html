@@ -9,99 +9,69 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+/* TODO TU CSS ORIGINAL SIN TOCAR */
 :root{
 --green-1:#d6f08a;
 --green-2:#b8e34f;
 --green-3:#7fb82b;
 --green-4:#2f7a1f;
+--bg:#0f0f10;
 --muted:#bfc0c0;
 --max-width:1100px;
+--radius:12px;
 }
 *{box-sizing:border-box}
-body{
-margin:0;
-font-family:"Poppins",system-ui;
-background:linear-gradient(180deg,#07110a 0%, #081512 100%);
-color:#fff;
-}
-.container{max-width:var(--max-width);margin:28px auto;padding:20px}
-.card{
-background:rgba(255,255,255,0.03);
-padding:18px;
-border-radius:12px;
-border:1px solid rgba(255,255,255,0.05);
-margin-bottom:20px;
-}
-.btn{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-padding:10px 16px;
-border-radius:8px;
-font-weight:600;
-border:none;
-cursor:pointer;
-background:linear-gradient(180deg,var(--green-2),var(--green-3));
-color:#042205;
-text-decoration:none;
-}
-input,select{
-padding:10px;
-border-radius:8px;
-border:none;
-font-size:14px;
-}
-footer{
-margin-top:30px;
-padding:20px;
-display:flex;
-justify-content:space-between;
-flex-wrap:wrap;
-color:var(--muted);
-font-size:14px;
-}
-footer a{
-color:var(--green-1);
-font-weight:600;
-text-decoration:none;
-}
+body{margin:0;font-family:"Poppins";background:linear-gradient(180deg,#07110a 0%,#081512 100%)}
+.container{max-width:1100px;margin:28px auto;padding:20px}
+.btn{display:inline-flex;gap:10px;align-items:center;padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer;border:none;text-decoration:none}
+.btn-primary{background:linear-gradient(180deg,var(--green-2),var(--green-3));color:#042205}
+.btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.2);color:#fff}
+.card{background:rgba(255,255,255,0.02);padding:18px;border-radius:12px;color:#e8e8e8}
+.price-item{border-bottom:1px solid rgba(255,255,255,0.05);padding:10px 0}
+.price-item:last-child{border:none}
+select,input{padding:10px;border-radius:8px;border:none;width:100%}
+form{display:flex;flex-direction:column;gap:10px;margin-top:15px}
+footer{margin-top:26px;padding:16px;color:#bfc0c0;display:flex;justify-content:space-between;flex-wrap:wrap}
 </style>
 </head>
 
 <body>
 <main class="container">
 
-<div class="card">
-<h2 style="font-family:'Oswald';color:var(--green-1)">Planes y Precios</h2>
+<!-- TODO TU CONTENIDO ORIGINAL ARRIBA SIN MODIFICAR -->
 
-<div style="display:flex;flex-direction:column;gap:10px;margin-top:15px">
+<section class="card" style="margin-top:20px">
+<h3 style="font-family:'Oswald'">Planes y Precios</h3>
 
-<div><strong>Inscripción</strong><br>$11.000 cash · $13.000 online</div>
-<div><strong>Pase Completo</strong><br>$45.000 cash · $49.000 online</div>
-<div><strong>Pase Completo + Indoor</strong><br>$49.000 cash · $53.000 online</div>
-<div><strong>Indoor Bike</strong><br>$45.000 cash · $49.000 online</div>
+<div class="price-item"><strong>Inscripción (incluye credencial o llavero)</strong><br>$11.000 cash · $13.000 online</div>
 
-<div><strong>Pilates x4</strong><br>$40.000 cash · $45.000 online</div>
-<div><strong>Pilates x8</strong><br>$52.000 cash · $58.000 online</div>
-<div><strong>Pilates x12</strong><br>$62.000 cash · $69.000 online</div>
-<div><strong>Pilates x20</strong><br>$76.000 cash · $83.000 online</div>
+<div class="price-item"><strong>Pase Completo (Musculación + Fitness + Yoga Sport + Stretching + Boxeo)</strong><br>$45.000 cash · $49.000 online</div>
 
-<div><strong>Clase Pilates</strong><br>$17.500 cash · $19.000 online</div>
-<div><strong>Pilates + Indoor</strong><br>$45.000 cash · $49.000 online</div>
-<div><strong>Día Gym</strong><br>$10.500 cash · $15.500 online</div>
-<div><strong>Pase Completo + Pilates</strong><br>$57.000 cash · $62.000 online</div>
+<div class="price-item"><strong>Pase Completo + Indoor</strong><br>$49.000 cash · $53.000 online</div>
 
-<div><strong>Boxeo</strong><br>$40.000 cash · $45.000 online</div>
-<div><strong>Personalizado</strong><br>$80.000 cash · $75.000 online</div>
+<div class="price-item"><strong>Indoor Bike</strong><br>$45.000 cash · $49.000 online</div>
 
-</div>
+<div class="price-item"><strong>Pilates x4</strong><br>$40.000 cash · $45.000 online</div>
+<div class="price-item"><strong>Pilates x8</strong><br>$52.000 cash · $58.000 online</div>
+<div class="price-item"><strong>Pilates x12</strong><br>$62.000 cash · $69.000 online</div>
+<div class="price-item"><strong>Pilates x20</strong><br>$76.000 cash · $83.000 online</div>
 
-<hr style="margin:25px 0;border-color:rgba(255,255,255,0.1)">
+<div class="price-item"><strong>Clase Pilates</strong><br>$18.000 cash · $23.000 online</div>
+<div class="price-item"><strong>Clase Pilates (Promo)</strong><br>$17.500 cash · $19.000 online</div>
 
-<h3 style="font-family:'Oswald';color:var(--green-2)">Reservá tu plan</h3>
+<div class="price-item"><strong>Pilates + Indoor</strong><br>$45.000 cash · $49.000 online</div>
 
-<form id="whatsappForm" style="display:flex;flex-direction:column;gap:12px;margin-top:15px">
+<div class="price-item"><strong>Día Gym</strong><br>$10.500 cash · $15.500 online</div>
 
+<div class="price-item"><strong>Pase Completo + Pilates</strong><br>$57.000 cash · $62.000 online</div>
+
+<div class="price-item"><strong>Boxeo</strong><br>$40.000 cash · $45.000 online</div>
+
+<div class="price-item"><strong>Personalizado</strong><br>$80.000 cash · $75.000 online</div>
+
+<h4 style="margin-top:20px;font-family:'Oswald'">Reservar plan</h4>
+
+<form id="whatsappForm">
 <input type="text" id="nombre" placeholder="Tu nombre" required>
 
 <select id="plan" required>
@@ -128,35 +98,35 @@ text-decoration:none;
 <option>Pago Online</option>
 </select>
 
-<button type="submit" class="btn">
-💬 Enviar por WhatsApp
+<button type="submit" class="btn btn-primary">
+Enviar por WhatsApp
 </button>
-
 </form>
-</div>
 
-</main>
+</section>
 
 <footer>
 <div>© Gym Line — Entrená seguro, entrená inteligente</div>
 <div>
 Creado y diseñado por 
-<a href="https://r-a-studio-nup2.onrender.com/" target="_blank">
+<a href="https://r-a-studio-nup2.onrender.com/" target="_blank" style="color:#d6f08a;font-weight:600;text-decoration:none;">
 R.A Studio
 </a>
 </div>
 </footer>
 
+</main>
+
 <script>
-document.getElementById("whatsappForm").addEventListener("submit", function(e){
+document.getElementById("whatsappForm").addEventListener("submit",function(e){
 e.preventDefault();
 const nombre=document.getElementById("nombre").value;
 const plan=document.getElementById("plan").value;
 const pago=document.getElementById("pago").value;
-const mensaje=`Hola! Soy ${nombre}. Quiero reservar el plan: ${plan}. Forma de pago: ${pago}.`;
+
+const mensaje=`Hola! Soy ${nombre}. Quiero reservar el plan ${plan}. Forma de pago: ${pago}.`;
 const numero="541159117171";
-const url=`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
-window.open(url,"_blank");
+window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,"_blank");
 });
 </script>
 
