@@ -117,8 +117,7 @@
       box-shadow:0 12px 30px rgba(0,0,0,0.6);
     }
 
-    /* ====== CARRUSEL DE VIDEOS 16:9 ====== */
-
+    /* ====== CARRUSEL DE VIDEOS (AGREGADO) ====== */
     .videos-carousel{
       margin-top:28px;
     }
@@ -132,29 +131,29 @@
       overflow:hidden;
       background: rgba(255,255,255,0.02);
       box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-      aspect-ratio: 16 / 9; /* PROPORCIÓN REAL */
+      aspect-ratio: 16 / 9; /* garantiza 16:9 real y responsive */
     }
 
-    .carousel-wrapper .slide{
+    .carousel-slide{
       position:absolute;
       inset:0;
       opacity:0;
-      transition:opacity .6s ease;
+      transition:opacity .5s ease;
       display:flex;
       align-items:center;
       justify-content:center;
       pointer-events:none;
     }
 
-    .carousel-wrapper .slide.active{
+    .carousel-slide.active{
       opacity:1;
       pointer-events:auto;
     }
 
-    .carousel-wrapper video{
+    .carousel-slide video{
       width:100%;
       height:100%;
-      object-fit:cover;
+      object-fit:cover; /* recorta manteniendo estética 16:9 */
       display:block;
       background:#000;
     }
@@ -200,7 +199,11 @@
         flex-direction:column;
         text-align:center;
       }
+      .carousel-wrapper{
+        aspect-ratio: 16 / 9;
+      }
     }
+    /* ====== FIN CARRUSEL AGREGADO ====== */
 
     footer{
       margin-top:40px;
@@ -209,6 +212,13 @@
       justify-content:space-between;
       flex-wrap:wrap;
       color:var(--muted);
+    }
+
+    @media(max-width:900px){
+      .hero{
+        flex-direction:column;
+        text-align:center;
+      }
     }
 
   </style>
@@ -235,30 +245,61 @@
       </div>
     </section>
 
-    <!-- PRECIOS -->
+    <!-- PRECIOS (IMAGEN NUEVA AGREGADA) -->
     <section id="precios" class="pricing-section">
       <img src="https://iili.io/q3dRaSV.md.png" alt="Planes y precios Gym Line">
     </section>
 
-    <!-- CARRUSEL DE VIDEOS -->
-    <section class="videos-carousel">
-      <div class="carousel-wrapper">
+    <!-- CARRUSEL DE VIDEOS (SECCIÓN AGREGADA) -->
+    <section id="videos-carousel" class="videos-carousel" aria-label="Carrusel de videos">
+      <div class="carousel-wrapper" role="region" aria-roledescription="carousel" aria-label="Videos personalizados">
 
-        <div class="slide active">
-          <video src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4"
-                 muted playsinline preload="metadata"></video>
+        <div class="carousel-slide active" data-index="0">
+          <video
+            src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4"
+            muted
+            autoplay
+            playsinline
+            preload="metadata"
+            crossorigin="anonymous"
+          ></video>
         </div>
 
-        <div class="slide">
-          <video src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4"
-                 muted playsinline preload="metadata"></video>
+        <div class="carousel-slide" data-index="1">
+          <video
+            src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4"
+            muted
+            autoplay
+            playsinline
+            preload="metadata"
+            crossorigin="anonymous"
+          ></video>
         </div>
 
-        <div class="slide">
-          <video src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4"
-                 muted playsinline preload="metadata"></video>
+        <div class="carousel-slide" data-index="2">
+          <video
+            src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4"
+            muted
+            autoplay
+            playsinline
+            preload="metadata"
+            crossorigin="anonymous"
+          ></video>
         </div>
 
+      </div>
+
+      <!-- controles opcionales -->
+      <div class="carousel-controls" aria-hidden="false">
+        <button id="carousel-prev" aria-label="Anterior">‹</button>
+
+        <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Navegación de videos">
+          <button data-index="0" class="active" aria-label="Video 1" role="tab" aria-selected="true"></button>
+          <button data-index="1" aria-label="Video 2" role="tab" aria-selected="false"></button>
+          <button data-index="2" aria-label="Video 3" role="tab" aria-selected="false"></button>
+        </div>
+
+        <button id="carousel-next" aria-label="Siguiente">›</button>
       </div>
     </section>
 
@@ -277,33 +318,116 @@
   </main>
 
   <script>
-    const slides = document.querySelectorAll(".slide");
-    let current = 0;
+    (function(){
+      // Elementos
+      const wrapper = document.querySelector('.carousel-wrapper');
+      const slides = Array.from(wrapper.querySelectorAll('.carousel-slide'));
+      const dotsContainer = document.getElementById('carousel-dots');
+      const dots = Array.from(dotsContainer.querySelectorAll('button'));
+      const prevBtn = document.getElementById('carousel-prev');
+      const nextBtn = document.getElementById('carousel-next');
 
-    function showSlide(index){
-      slides.forEach((slide,i)=>{
-        slide.classList.toggle("active", i === index);
-        const video = slide.querySelector("video");
-        if(video){
-          video.pause();
-          video.currentTime = 0;
+      let current = 0;
+      let timerId = null;
+      const autoplayInterval = 7000; // fallback por si hay problema con onended
+      let tabVisible = true;
+
+      function activateSlide(index){
+        if(index < 0) index = slides.length - 1;
+        if(index >= slides.length) index = 0;
+
+        slides.forEach((s,i) => {
+          s.classList.toggle('active', i === index);
+        });
+
+        dots.forEach((d,i) => {
+          d.classList.toggle('active', i === index);
+          d.setAttribute('aria-selected', i === index ? 'true' : 'false');
+        });
+
+        current = index;
+        playCurrentVideo();
+      }
+
+      function playCurrentVideo(){
+        slides.forEach((s,i) => {
+          const v = s.querySelector('video');
+          if(!v) return;
+          if(i === current){
+            // asegurar inicio desde 0 y reproducir
+            v.currentTime = 0;
+            v.muted = true;
+            const p = v.play();
+            if(p !== undefined){
+              p.catch(()=> {
+                // autoplay bloqueado por navegador: no hacemos nada adicional
+              });
+            }
+            // cuando termine, avanzar
+            v.onended = () => {
+              activateSlide(current + 1);
+            };
+          } else {
+            try { v.pause(); } catch(e){}
+          }
+        });
+      }
+
+      function goNext(){
+        activateSlide(current + 1);
+        resetTimer();
+      }
+
+      function goPrev(){
+        activateSlide(current - 1);
+        resetTimer();
+      }
+
+      function resetTimer(){
+        if(timerId) clearInterval(timerId);
+        timerId = setInterval(() => {
+          if(tabVisible) activateSlide(current + 1);
+        }, autoplayInterval);
+      }
+
+      // dots
+      dots.forEach(d => {
+        d.addEventListener('click', () => {
+          const idx = Number(d.getAttribute('data-index'));
+          activateSlide(idx);
+          resetTimer();
+        });
+      });
+
+      prevBtn.addEventListener('click', goPrev);
+      nextBtn.addEventListener('click', goNext);
+
+      // pausar cuando la pestaña no está visible
+      document.addEventListener('visibilitychange', () => {
+        tabVisible = document.visibilityState === 'visible';
+        if(!tabVisible){
+          slides.forEach(s => {
+            const v = s.querySelector('video');
+            if(v) try{ v.pause(); } catch(e){}
+          });
+        } else {
+          playCurrentVideo();
         }
       });
 
-      const activeVideo = slides[index].querySelector("video");
-      if(activeVideo){
-        activeVideo.play().catch(()=>{});
-        activeVideo.onended = nextSlide;
-      }
-    }
+      // iniciar
+      activateSlide(0);
+      resetTimer();
 
-    function nextSlide(){
-      current = (current + 1) % slides.length;
-      showSlide(current);
-    }
+      // pausado en hover para evitar sorpresas (aunque muted)
+      wrapper.addEventListener('mouseover', () => {
+        if(timerId) clearInterval(timerId);
+      });
+      wrapper.addEventListener('mouseleave', () => {
+        resetTimer();
+      });
 
-    showSlide(0);
+    })();
   </script>
-
 </body>
 </html>
