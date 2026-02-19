@@ -15,312 +15,92 @@
       --green-3: #7fb82b;
       --muted: #bfc0c0;
       --bg-dark: #07110a;
-      --card-bg: rgba(255,255,255,0.02);
-      --radius: 12px;
+      --radius: 14px;
       --max-width: 1100px;
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      font-family: "Poppins", system-ui;
       background: linear-gradient(180deg,var(--bg-dark) 0%, #081512 100%);
       color:#e8efe3;
-      -webkit-font-smoothing:antialiased;
     }
 
-    a{color:inherit;text-decoration:none}
+    a{text-decoration:none;color:inherit}
     .container{max-width:var(--max-width);margin:28px auto;padding:20px}
 
-    /* HERO */
     .hero{
       display:flex;gap:20px;align-items:center;
       background: rgba(255,255,255,0.03);
       border-radius:var(--radius);padding:18px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.45);
     }
-    .logo{width:130px;height:130px;border-radius:50%;background:transparent;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
-    .logo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;border-radius:50%}
-    .brand{font-family:"Oswald";color:var(--green-1);font-size:18px;margin-bottom:6px}
-    .title{font-family:"Oswald";font-size:28px;margin:0;color:#fff}
-    .subtitle{margin-top:8px;color:var(--muted);font-size:14px}
+
+    .logo{width:130px;height:130px;border-radius:50%;overflow:hidden}
+    .logo img{width:100%;height:100%;object-fit:cover}
+
+    .brand{font-family:"Oswald";color:var(--green-1);font-size:18px}
+    .title{font-family:"Oswald";font-size:28px;margin:6px 0}
+    .subtitle{color:var(--muted);font-size:14px}
 
     .hero-ctas{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer;border:none;transition:all .18s ease;text-decoration:none}
+    .btn{padding:10px 16px;border-radius:10px;font-weight:600;transition:.2s}
     .btn-primary{background:linear-gradient(180deg,var(--green-2),var(--green-3));color:#042205}
-    .btn-outline{border:1px solid var(--green-2);color:var(--green-1);background:transparent}
+    .btn-outline{border:1px solid var(--green-2);color:var(--green-1)}
     .btn:hover{transform:translateY(-3px)}
 
-    /* PRICES SECTION */
-    .prices-hero{
-      margin-top:28px;
-      display:flex;
-      gap:18px;
-      align-items:stretch;
-      flex-wrap:wrap;
+    /* NUEVA SECCIÓN PRECIOS SOLO IMAGEN */
+    .pricing-section{
+      margin-top:40px;
+      text-align:center;
     }
 
-    .price-card{
-      background:var(--card-bg);
-      border-radius:12px;
-      padding:18px;
-      border:1px solid rgba(255,255,255,0.03);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+    .pricing-section img{
       width:100%;
+      max-width:900px;
+      border-radius:var(--radius);
+      box-shadow:0 12px 30px rgba(0,0,0,0.6);
     }
 
-    /* Grid of price items */
-    .prices-grid{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
-    }
-
-    .plan{
-      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
-      border-radius:10px;
-      padding:12px;
+    footer{
+      margin-top:40px;
+      padding:16px;
       display:flex;
-      flex-direction:column;
-      gap:8px;
-      border:1px solid rgba(255,255,255,0.02);
+      justify-content:space-between;
+      flex-wrap:wrap;
+      color:var(--muted);
     }
 
-    .plan h4{margin:0;font-family:"Oswald";font-size:16px;color:#fff}
-    .plan p{margin:0;color:var(--muted);font-size:13px}
-
-    .price-row{
-      display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:6px;
+    @media(max-width:900px){
+      .hero{flex-direction:column;text-align:center}
     }
-
-    .price-badge{
-      padding:8px 10px;border-radius:8px;font-weight:700;font-size:15px;
-      display:inline-block;
-    }
-    .cash{background:transparent;border:2px solid rgba(255,255,255,0.06);color:#fff}
-    .online{background:linear-gradient(180deg,var(--green-2),var(--green-3));color:#042205}
-
-    .muted{color:var(--muted);font-size:13px}
-
-    /* Section title */
-    .section-title{
-      font-family:"Oswald";font-size:20px;margin:0 0 6px 0;color:#fff;
-    }
-
-    /* Responsive */
-    @media (max-width:980px){
-      .prices-grid{grid-template-columns: repeat(2, 1fr)}
-    }
-    @media (max-width:640px){
-      .hero{flex-direction:column;align-items:center;text-align:center}
-      .prices-grid{grid-template-columns: 1fr}
-    }
-
-    /* Small helper for footer spacing */
-    footer{margin-top:40px;padding:16px;display:flex;justify-content:space-between;flex-wrap:wrap;color:var(--muted)}
   </style>
 </head>
+
 <body>
   <main class="container">
 
     <!-- HERO -->
-    <section class="hero" aria-label="Hero - Gym Line">
-      <div class="logo" role="img" aria-label="Logo Gym Line">
+    <section class="hero">
+      <div class="logo">
         <img src="https://iili.io/q2yDmFt.th.png" alt="Logo Gym Line">
       </div>
-
-      <div class="hero-info">
+      <div>
         <div class="brand">ENTRENÁ SEGURO · ENTRENÁ INTELIGENTE</div>
         <h1 class="title">Gym Line — San Miguel</h1>
-        <p class="subtitle">Clases guiadas, entrenadores certificados, y un ambiente pensado para que mejores sin lesiones.</p>
+        <p class="subtitle">Clases guiadas, entrenadores certificados y ambiente profesional.</p>
 
         <div class="hero-ctas">
-          <a class="btn btn-primary" href="https://wa.me/541159117171" target="_blank" rel="noopener noreferrer">💬 Reservar por WhatsApp</a>
-          <a class="btn btn-outline" href="#precios">Ver precios y planes</a>
+          <a class="btn btn-primary" href="https://wa.me/541159117171" target="_blank">Reservar</a>
+          <a class="btn btn-outline" href="#precios">Ver Planes</a>
         </div>
       </div>
     </section>
 
-    <!-- PRECIOS -->
-    <section id="precios" class="prices-hero" aria-label="Precios y planes" style="margin-top:20px">
-      <div class="price-card" style="flex:1 1 320px">
-        <h3 class="section-title">Inscripción</h3>
-        <p class="muted">Inscripción incluye credencial o llavero</p>
-
-        <div class="prices-grid" style="margin-top:12px">
-          <div class="plan">
-            <h4>Inscripción</h4>
-            <div class="price-row">
-              <span class="price-badge cash">$11.000 cash</span>
-              <span class="price-badge online">$13.000 pago online</span>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-top:12px">
-          <a class="btn btn-primary" href="https://wa.me/541159117171?text=Hola%20quiero%20consultar%20por%20inscripci%C3%B3n" target="_blank" rel="noopener noreferrer">Quiero inscribirme</a>
-        </div>
-      </div>
-
-      <div class="price-card" style="flex:2 1 620px">
-        <h3 class="section-title">Planes y Clases</h3>
-        <p class="muted">Elige el plan que más te guste. Pagos en efectivo y opción de pago online.</p>
-
-        <div class="prices-grid" style="margin-top:12px">
-          <!-- Pase Completo -->
-          <div class="plan">
-            <h4>Pase Completo</h4>
-            <p class="muted">Musculación y Fitness + Yoga Sport + Stretching + Boxeo</p>
-            <div class="price-row">
-              <span class="price-badge cash">$45.000 cash</span>
-              <span class="price-badge online">$49.000 pago online</span>
-            </div>
-          </div>
-
-          <!-- Pase completo y indoor -->
-          <div class="plan">
-            <h4>Pase completo y Indoor</h4>
-            <div class="price-row">
-              <span class="price-badge cash">$49.000 cash</span>
-              <span class="price-badge online">$53.000 pago online</span>
-            </div>
-          </div>
-
-          <!-- Indoor Bike -->
-          <div class="plan">
-            <h4>Indoor Bike</h4>
-            <div class="price-row">
-              <span class="price-badge cash">$45.000 cash</span>
-              <span class="price-badge online">$49.000 pago online</span>
-            </div>
-          </div>
-
-          <!-- Pilates packs -->
-          <div class="plan">
-            <h4>Pilates — x4 clases / mes</h4>
-            <div class="price-row">
-              <span class="price-badge cash">$40.000 cash</span>
-              <span class="price-badge online">$45.000 pago online</span>
-            </div>
-          </div>
-
-          <div class="plan">
-            <h4>Pilates — x8 clases / mes</h4>
-            <div class="price-row">
-              <span class="price-badge cash">$52.000 cash</span>
-              <span class="price-badge online">$58.000 pago online</span>
-            </div>
-          </div>
-
-          <div class="plan">
-            <h4>Pilates — x12 clases / mes</h4>
-            <div class="price-row">
-              <span class="price-badge cash">$62.000 cash</span>
-              <span class="price-badge online">$69.000 pago online</span>
-            </div>
-          </div>
-
-          <div class="plan">
-            <h4>Pilates — x20 clases / mes</h4>
-            <div class="price-row">
-              <span class="price-badge cash">$76.000 cash</span>
-              <span class="price-badge online">$83.000 pago online</span>
-            </div>
-          </div>
-
-          <!-- Clase Pilates (1) -->
-          <div class="plan">
-            <h4>Clase Pilates</h4>
-            <div class="price-row">
-              <span class="price-badge cash">$18.000 cash</span>
-              <span class="price-badge online">$23.000 pago online</span>
-            </div>
-          </div>
-
-          <!-- Pilates + Indoor -->
-          <div class="plan">
-            <h4>Pilates + Indoor</h4>
-            <div class="price-row">
-              <span class="price-badge cash">$45.000 cash</span>
-              <span class="price-badge online">$49.000 pago online</span>
-            </div>
-          </div>
-
-          <!-- Día Gym -->
-          <div class="plan">
-            <h4>Día Gym</h4>
-            <div class="price-row">
-              <span class="price-badge cash">$10.500 cash</span>
-              <span class="price-badge online">$15.500 pago online</span>
-            </div>
-          </div>
-
-          <!-- Clase Pilates (2) -->
-          <div class="plan">
-            <h4>Clase Pilates (opción)</h4>
-            <div class="price-row">
-              <span class="price-badge cash">$17.500 cash</span>
-              <span class="price-badge online">$19.000 pago online</span>
-            </div>
-          </div>
-
-          <!-- Pase completo + Pilates -->
-          <div class="plan">
-            <h4>Pase completo + Pilates</h4>
-            <div class="price-row">
-              <span class="price-badge cash">$57.000 cash</span>
-              <span class="price-badge online">$62.000 pago online</span>
-            </div>
-          </div>
-
-          <!-- Boxeo -->
-          <div class="plan">
-            <h4>Boxeo</h4>
-            <div class="price-row">
-              <span class="price-badge cash">$40.000 cash</span>
-              <span class="price-badge online">$45.000 pago online</span>
-            </div>
-          </div>
-
-          <!-- Personalizado -->
-          <div class="plan">
-            <h4>PERSONALIZADO</h4>
-            <p class="muted">Entrenamiento personal a medida</p>
-            <div class="price-row">
-              <span class="price-badge cash">$80.000 cash</span>
-              <span class="price-badge online">$75.000 pago online</span>
-            </div>
-          </div>
-
-        </div>
-
-        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
-          <a class="btn btn-primary" href="https://wa.me/541159117171?text=Hola%20quiero%20consultar%20por%20los%20planes%20y%20precios" target="_blank" rel="noopener noreferrer">Consultar / Reservar</a>
-          <a class="btn btn-outline" href="#contacto">Contacto</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contacto" style="margin-top:22px">
-      <div style="font-family:'Oswald';font-size:18px;color:#fff;margin-bottom:8px">Contacto</div>
-      <div class="muted">📍 Rodríguez Peña 948, San Miguel</div>
-      <div class="muted">📞 11 5911 7171</div>
-
-      <div style="margin-top:12px">
-        <a class="btn btn-primary" href="https://wa.me/541159117171" target="_blank" rel="noopener noreferrer">Chatear por WhatsApp</a>
-      </div>
-
-      <div style="margin-top:20px">
-        <h4 style="font-family:'Oswald'; color:white; margin:0 0 8px 0">Síguenos</h4>
-        <a class="btn btn-outline"
-           href="https://www.instagram.com/_gymline_?igsh=b2phYjMzenh3MnZn"
-           target="_blank"
-           rel="noopener noreferrer">
-           Instagram
-        </a>
-      </div>
+    <!-- SECCIÓN PRECIOS (AHORA SOLO IMAGEN) -->
+    <section id="precios" class="pricing-section">
+      <img src="https://iili.io/ftVzRhx.th.jpg" alt="Planes y precios Gym Line">
     </section>
 
     <footer>
