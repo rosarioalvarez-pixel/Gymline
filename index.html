@@ -104,7 +104,6 @@
       transform:translateY(-3px);
     }
 
-    /* SECCIÓN PRECIOS SOLO IMAGEN */
     .pricing-section{
       margin-top:40px;
       text-align:center;
@@ -117,98 +116,37 @@
       box-shadow:0 12px 30px rgba(0,0,0,0.6);
     }
 
-    /* ====== CARRUSEL DE VIDEOS (AGREGADO) ====== */
-    .videos-carousel{
-      margin-top:28px;
+    .video-section{
+      margin-top:50px;
     }
 
-    .carousel-wrapper{
+    .video-carousel{
+      display:flex;
+      gap:20px;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      padding-bottom:10px;
+    }
+
+    .video-carousel::-webkit-scrollbar{
+      display:none;
+    }
+
+    .video-item{
+      flex:0 0 100%;
+      scroll-snap-align:center;
       position:relative;
-      width:100%;
-      max-width:900px;
-      margin:0 auto;
+      aspect-ratio:16/9;
       border-radius:var(--radius);
       overflow:hidden;
-      background: rgba(255,255,255,0.02);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-
-      /* PROPORCIÓN 16:9 (real, responsive) */
-      aspect-ratio: 16 / 9;
-      height: auto; /* eliminar altura fija para mantener proporción */
+      box-shadow:0 12px 30px rgba(0,0,0,0.6);
     }
 
-    .carousel-slide{
-      position:absolute;
-      inset:0;
-      opacity:0;
-      transition:opacity .5s ease;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      pointer-events:none;
-    }
-
-    .carousel-slide.active{
-      opacity:1;
-      pointer-events:auto;
-    }
-
-    .carousel-slide video{
+    .video-item video{
       width:100%;
       height:100%;
-      object-fit:cover; /* usa cover para llenar el 16:9 sin deformar */
-      display:block;
-      background:#000;
+      object-fit:cover;
     }
-
-    .carousel-controls{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:12px;
-      margin-top:12px;
-    }
-
-    .carousel-controls button{
-      background:transparent;
-      border:1px solid rgba(255,255,255,0.08);
-      color:var(--muted);
-      padding:6px 10px;
-      border-radius:8px;
-      cursor:pointer;
-    }
-
-    .carousel-dots{
-      display:flex;
-      gap:8px;
-    }
-
-    .carousel-dots button{
-      width:10px;
-      height:10px;
-      border-radius:50%;
-      background:rgba(255,255,255,0.12);
-      border:none;
-      padding:0;
-      cursor:pointer;
-    }
-
-    .carousel-dots button.active{
-      background:var(--green-1);
-      box-shadow:0 0 6px rgba(123,195,86,0.3);
-    }
-
-    @media(max-width:900px){
-      .hero{
-        flex-direction:column;
-        text-align:center;
-      }
-      .carousel-wrapper{
-        /* reafirmar 16:9 en móvil */
-        aspect-ratio: 16 / 9;
-      }
-    }
-    /* ====== FIN CARRUSEL AGREGADO ====== */
 
     footer{
       margin-top:40px;
@@ -250,60 +188,38 @@
       </div>
     </section>
 
-    <!-- PRECIOS (IMAGEN NUEVA AGREGADA) -->
+    <!-- PRECIOS -->
     <section id="precios" class="pricing-section">
       <img src="https://iili.io/q3dRaSV.md.png" alt="Planes y precios Gym Line">
     </section>
 
-    <!-- ======= SECCIÓN DE CARRUSEL DE VIDEOS AÑADIDA (NO TOCÉ NADA MÁS) ======= -->
-    <section id="videos-carousel" class="videos-carousel" aria-label="Carrusel de videos">
-      <div class="carousel-wrapper" role="region" aria-roledescription="carousel" aria-label="Videos">
+    <!-- CARRUSEL DE VIDEOS -->
+    <section class="video-section">
+      <div class="video-carousel">
 
-        <div class="carousel-slide active" data-index="0">
-          <video
-            src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4"
-            muted
-            playsinline
-            preload="metadata"
-            crossorigin="anonymous"
-          ></video>
+        <!-- Video 1 NUEVO -->
+        <div class="video-item">
+          <video autoplay muted loop playsinline>
+            <source src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/2641310c-e868-4967-9010-aa570310ab86.mp4" type="video/mp4">
+          </video>
         </div>
 
-        <div class="carousel-slide" data-index="1">
-          <video
-            src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4"
-            muted
-            playsinline
-            preload="metadata"
-            crossorigin="anonymous"
-          ></video>
+        <!-- Video 2 (EL OTRO CAMBIADO) -->
+        <div class="video-item">
+          <video autoplay muted loop playsinline>
+            <source src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4" type="video/mp4">
+          </video>
         </div>
 
-        <div class="carousel-slide" data-index="2">
-          <video
-            src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4"
-            muted
-            playsinline
-            preload="metadata"
-            crossorigin="anonymous"
-          ></video>
+        <!-- Video 3 ORIGINAL -->
+        <div class="video-item">
+          <video autoplay muted loop playsinline>
+            <source src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4" type="video/mp4">
+          </video>
         </div>
 
-      </div>
-
-      <div class="carousel-controls" aria-hidden="false">
-        <button id="carousel-prev" aria-label="Anterior">‹</button>
-
-        <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Navegación de videos">
-          <button data-index="0" class="active" aria-label="Video 1" role="tab" aria-selected="true"></button>
-          <button data-index="1" aria-label="Video 2" role="tab" aria-selected="false"></button>
-          <button data-index="2" aria-label="Video 3" role="tab" aria-selected="false"></button>
-        </div>
-
-        <button id="carousel-next" aria-label="Siguiente">›</button>
       </div>
     </section>
-    <!-- ======= FIN CARRUSEL ======= -->
 
     <footer>
       <div>© Gym Line — Entrená seguro, entrená inteligente</div>
@@ -318,137 +234,5 @@
     </footer>
 
   </main>
-
-  <script>
-    (function(){
-      const wrapper = document.querySelector('.carousel-wrapper');
-      const slides = Array.from(wrapper.querySelectorAll('.carousel-slide'));
-      const dotsContainer = document.getElementById('carousel-dots');
-      const dots = Array.from(dotsContainer.querySelectorAll('button'));
-      const prevBtn = document.getElementById('carousel-prev');
-      const nextBtn = document.getElementById('carousel-next');
-
-      let current = 0;
-      let timerId = null;
-      const fallbackInterval = 8000; // fallback por si onended no funciona
-
-      function activateSlide(index){
-        if(index < 0) index = slides.length - 1;
-        if(index >= slides.length) index = 0;
-
-        slides.forEach((s,i) => {
-          s.classList.toggle('active', i === index);
-        });
-
-        dots.forEach((d,i) => {
-          d.classList.toggle('active', i === index);
-          d.setAttribute('aria-selected', i === index ? 'true' : 'false');
-        });
-
-        current = index;
-        playCurrentVideo();
-      }
-
-      function playCurrentVideo(){
-        // pausar todos y reproducir el activo desde 0
-        slides.forEach((s,i) => {
-          const v = s.querySelector('video');
-          if(!v) return;
-          try { v.pause(); } catch(e){}
-        });
-
-        const activeSlide = slides[current];
-        const activeVideo = activeSlide.querySelector('video');
-        if(activeVideo){
-          // asegurar que esté muteado (para permitir autoplay)
-          activeVideo.muted = true;
-          activeVideo.currentTime = 0;
-          const playPromise = activeVideo.play();
-          if (playPromise !== undefined) {
-            playPromise.catch(()=> {
-              // autoplay podría bloquearse en algunos navegadores; en ese caso usamos fallback timer
-              startFallbackTimer();
-            }).then(() => {
-              // asegurar que cuando termine avance al siguiente
-              activeVideo.onended = () => {
-                activateSlide(current + 1);
-              };
-              // clear fallback si está reproduciendo correctamente
-              stopFallbackTimer();
-            });
-          } else {
-            // si no devuelve promesa, también asignamos onended
-            activeVideo.onended = () => {
-              activateSlide(current + 1);
-            };
-          }
-        } else {
-          // no hay video: usar timer fallback
-          startFallbackTimer();
-        }
-      }
-
-      function startFallbackTimer(){
-        stopFallbackTimer();
-        timerId = setTimeout(() => {
-          activateSlide(current + 1);
-        }, fallbackInterval);
-      }
-
-      function stopFallbackTimer(){
-        if(timerId){ clearTimeout(timerId); timerId = null; }
-      }
-
-      function goNext(){
-        activateSlide(current + 1);
-      }
-
-      function goPrev(){
-        activateSlide(current - 1);
-      }
-
-      // dots click
-      dots.forEach(d => {
-        d.addEventListener('click', () => {
-          const idx = Number(d.getAttribute('data-index'));
-          activateSlide(idx);
-        });
-      });
-
-      prevBtn.addEventListener('click', () => {
-        goPrev();
-      });
-      nextBtn.addEventListener('click', () => {
-        goNext();
-      });
-
-      // pausar cuando pestaña no visible
-      document.addEventListener('visibilitychange', () => {
-        if(document.visibilityState !== 'visible'){
-          slides.forEach(s => {
-            const v = s.querySelector('video');
-            if(v) try{ v.pause(); } catch(e){}
-          });
-        } else {
-          // reanudar el actual
-          playCurrentVideo();
-        }
-      });
-
-      // hover pausa fallback timer para evitar saltos mientras revisan
-      wrapper.addEventListener('mouseover', () => {
-        stopFallbackTimer();
-      });
-      wrapper.addEventListener('mouseleave', () => {
-        // si el video no reproduce (autoplay bloqueado), volver a fallback
-        const activeVideo = slides[current].querySelector('video');
-        if(!activeVideo || activeVideo.paused) startFallbackTimer();
-      });
-
-      // iniciar
-      activateSlide(0);
-
-    })();
-  </script>
 </body>
 </html>
