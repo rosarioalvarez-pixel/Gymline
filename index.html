@@ -1,7 +1,7 @@
 <!-- index.html -->
 <!doctype html>
 <html lang="es">
-<head> 
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Gym Line — Entrená seguro, entrená inteligente</title>
@@ -93,30 +93,33 @@
       margin-top:12px;
       flex-wrap:wrap;
     }
-    .btn{
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-      padding:10px 16px;
-      border-radius:10px;
-      font-weight:600;
-      cursor:pointer;
-      border:none;
-      transition:transform .12s ease, box-shadow .12s ease;
-      text-decoration:none;
-    }
-    .btn:active{transform:translateY(1px)}
-    .btn-primary{
-      background: linear-gradient(90deg,var(--green-3),var(--green-2));
-      color:#062006;
-      box-shadow: 0 8px 30px rgba(127,184,43,0.18);
-    }
-    .btn-outline{
-      background:transparent;
-      border:1px solid rgba(255,255,255,0.06);
-      color:var(--green-1);
-    }
+.btn{
+  display:inline-flex;
+  gap:10px;
+  align-items:center;
+  padding:10px 16px;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
+  border:none;
+  transition:all .25s ease;
+  text-decoration:none;
+  position:relative;
+  overflow:hidden;
+}
 
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+.btn-primary:hover{
+  filter:brightness(1.1);
+}
+
+.btn-outline:hover{
+  background:rgba(255,255,255,0.05);
+}
     /* Grid de características + imagen */
     .grid{
       margin-top:22px;
@@ -394,7 +397,7 @@
       </aside>
     </section>
 
-    <footer>
+<footer>
   <div class="muted">© Gym Line — Entrená seguro, entrená inteligente</div>
 
   <div class="muted">
