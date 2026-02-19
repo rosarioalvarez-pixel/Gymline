@@ -43,24 +43,30 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.45);
     }
 
-    /* LOGO REDONDO PERFECTO */
+    /* LOGO REDONDO SIN BORDE BLANCO */
     .logo{
       width:130px;
       height:130px;
       border-radius:50%;
-      background:white;
+      background:transparent; /* <- transparente para quitar el borde blanco */
       display:flex;
       align-items:center;
       justify-content:center;
       overflow:hidden;
       flex-shrink:0;
+      padding:0; /* <- sin padding para que no quede espacio blanco alrededor */
+      border: none;
+      box-shadow: none;
     }
 
     .logo img{
       width:100%;
       height:100%;
-      object-fit:cover;
+      object-fit:cover; /* ocupa todo el círculo sin deformarse */
       object-position:center;
+      display:block;
+      background:transparent;
+      border-radius:50%;
     }
 
     .brand{
@@ -144,7 +150,7 @@
 
     <section class="hero">
       
-      <!-- LOGO REDONDO -->
+      <!-- LOGO REDONDO (SIN BORDE BLANCO) -->
       <div class="logo">
         <img src="https://iili.io/q2yDmFt.th.png" alt="Logo Gym Line">
       </div>
