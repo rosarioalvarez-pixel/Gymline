@@ -131,7 +131,10 @@
       overflow:hidden;
       background: rgba(255,255,255,0.02);
       box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-      aspect-ratio: 16 / 9; /* garantiza 16:9 real y responsive */
+
+      /* PROPORCIÓN 16:9 (real, responsive) */
+      aspect-ratio: 16 / 9;
+      height: auto; /* eliminar altura fija para mantener proporción */
     }
 
     .carousel-slide{
@@ -153,7 +156,7 @@
     .carousel-slide video{
       width:100%;
       height:100%;
-      object-fit:cover; /* recorta manteniendo estética 16:9 */
+      object-fit:cover; /* usa cover para llenar el 16:9 sin deformar */
       display:block;
       background:#000;
     }
@@ -192,6 +195,7 @@
 
     .carousel-dots button.active{
       background:var(--green-1);
+      box-shadow:0 0 6px rgba(123,195,86,0.3);
     }
 
     @media(max-width:900px){
@@ -200,6 +204,7 @@
         text-align:center;
       }
       .carousel-wrapper{
+        /* reafirmar 16:9 en móvil */
         aspect-ratio: 16 / 9;
       }
     }
@@ -250,15 +255,14 @@
       <img src="https://iili.io/q3dRaSV.md.png" alt="Planes y precios Gym Line">
     </section>
 
-    <!-- CARRUSEL DE VIDEOS (SECCIÓN AGREGADA) -->
+    <!-- ======= SECCIÓN DE CARRUSEL DE VIDEOS AÑADIDA (NO TOCÉ NADA MÁS) ======= -->
     <section id="videos-carousel" class="videos-carousel" aria-label="Carrusel de videos">
-      <div class="carousel-wrapper" role="region" aria-roledescription="carousel" aria-label="Videos personalizados">
+      <div class="carousel-wrapper" role="region" aria-roledescription="carousel" aria-label="Videos">
 
         <div class="carousel-slide active" data-index="0">
           <video
             src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4"
             muted
-            autoplay
             playsinline
             preload="metadata"
             crossorigin="anonymous"
@@ -269,7 +273,6 @@
           <video
             src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4"
             muted
-            autoplay
             playsinline
             preload="metadata"
             crossorigin="anonymous"
@@ -280,7 +283,6 @@
           <video
             src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4"
             muted
-            autoplay
             playsinline
             preload="metadata"
             crossorigin="anonymous"
@@ -289,7 +291,6 @@
 
       </div>
 
-      <!-- controles opcionales -->
       <div class="carousel-controls" aria-hidden="false">
         <button id="carousel-prev" aria-label="Anterior">‹</button>
 
@@ -302,6 +303,7 @@
         <button id="carousel-next" aria-label="Siguiente">›</button>
       </div>
     </section>
+    <!-- ======= FIN CARRUSEL ======= -->
 
     <footer>
       <div>© Gym Line — Entrená seguro, entrená inteligente</div>
@@ -319,7 +321,6 @@
 
   <script>
     (function(){
-      // Elementos
       const wrapper = document.querySelector('.carousel-wrapper');
       const slides = Array.from(wrapper.querySelectorAll('.carousel-slide'));
       const dotsContainer = document.getElementById('carousel-dots');
@@ -329,8 +330,7 @@
 
       let current = 0;
       let timerId = null;
-      const autoplayInterval = 7000; // fallback por si hay problema con onended
-      let tabVisible = true;
+      const fallbackInterval = 8000; // fallback por si onended no funciona
 
       function activateSlide(index){
         if(index < 0) index = slides.length - 1;
@@ -350,82 +350,103 @@
       }
 
       function playCurrentVideo(){
+        // pausar todos y reproducir el activo desde 0
         slides.forEach((s,i) => {
           const v = s.querySelector('video');
           if(!v) return;
-          if(i === current){
-            // asegurar inicio desde 0 y reproducir
-            v.currentTime = 0;
-            v.muted = true;
-            const p = v.play();
-            if(p !== undefined){
-              p.catch(()=> {
-                // autoplay bloqueado por navegador: no hacemos nada adicional
-              });
-            }
-            // cuando termine, avanzar
-            v.onended = () => {
+          try { v.pause(); } catch(e){}
+        });
+
+        const activeSlide = slides[current];
+        const activeVideo = activeSlide.querySelector('video');
+        if(activeVideo){
+          // asegurar que esté muteado (para permitir autoplay)
+          activeVideo.muted = true;
+          activeVideo.currentTime = 0;
+          const playPromise = activeVideo.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(()=> {
+              // autoplay podría bloquearse en algunos navegadores; en ese caso usamos fallback timer
+              startFallbackTimer();
+            }).then(() => {
+              // asegurar que cuando termine avance al siguiente
+              activeVideo.onended = () => {
+                activateSlide(current + 1);
+              };
+              // clear fallback si está reproduciendo correctamente
+              stopFallbackTimer();
+            });
+          } else {
+            // si no devuelve promesa, también asignamos onended
+            activeVideo.onended = () => {
               activateSlide(current + 1);
             };
-          } else {
-            try { v.pause(); } catch(e){}
           }
-        });
+        } else {
+          // no hay video: usar timer fallback
+          startFallbackTimer();
+        }
+      }
+
+      function startFallbackTimer(){
+        stopFallbackTimer();
+        timerId = setTimeout(() => {
+          activateSlide(current + 1);
+        }, fallbackInterval);
+      }
+
+      function stopFallbackTimer(){
+        if(timerId){ clearTimeout(timerId); timerId = null; }
       }
 
       function goNext(){
         activateSlide(current + 1);
-        resetTimer();
       }
 
       function goPrev(){
         activateSlide(current - 1);
-        resetTimer();
       }
 
-      function resetTimer(){
-        if(timerId) clearInterval(timerId);
-        timerId = setInterval(() => {
-          if(tabVisible) activateSlide(current + 1);
-        }, autoplayInterval);
-      }
-
-      // dots
+      // dots click
       dots.forEach(d => {
         d.addEventListener('click', () => {
           const idx = Number(d.getAttribute('data-index'));
           activateSlide(idx);
-          resetTimer();
         });
       });
 
-      prevBtn.addEventListener('click', goPrev);
-      nextBtn.addEventListener('click', goNext);
+      prevBtn.addEventListener('click', () => {
+        goPrev();
+      });
+      nextBtn.addEventListener('click', () => {
+        goNext();
+      });
 
-      // pausar cuando la pestaña no está visible
+      // pausar cuando pestaña no visible
       document.addEventListener('visibilitychange', () => {
-        tabVisible = document.visibilityState === 'visible';
-        if(!tabVisible){
+        if(document.visibilityState !== 'visible'){
           slides.forEach(s => {
             const v = s.querySelector('video');
             if(v) try{ v.pause(); } catch(e){}
           });
         } else {
+          // reanudar el actual
           playCurrentVideo();
         }
       });
 
-      // iniciar
-      activateSlide(0);
-      resetTimer();
-
-      // pausado en hover para evitar sorpresas (aunque muted)
+      // hover pausa fallback timer para evitar saltos mientras revisan
       wrapper.addEventListener('mouseover', () => {
-        if(timerId) clearInterval(timerId);
+        stopFallbackTimer();
       });
       wrapper.addEventListener('mouseleave', () => {
-        resetTimer();
+        // si el video no reproduce (autoplay bloqueado), volver a fallback
+        const activeVideo = slides[current].querySelector('video');
+        if(!activeVideo || activeVideo.paused) startFallbackTimer();
       });
+
+      // iniciar
+      activateSlide(0);
 
     })();
   </script>
