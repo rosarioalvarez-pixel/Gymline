@@ -116,16 +116,18 @@
       box-shadow:0 12px 30px rgba(0,0,0,0.6);
     }
 
+    /* 🔥 VIDEO FULL WIDTH 16:9 REAL */
+
     .video-section{
-      margin-top:50px;
+      margin-top:60px;
+      width:100vw;
+      margin-left:calc(-50vw + 50%);
     }
 
     .video-carousel{
       display:flex;
-      gap:20px;
       overflow-x:auto;
       scroll-snap-type:x mandatory;
-      padding-bottom:10px;
     }
 
     .video-carousel::-webkit-scrollbar{
@@ -133,13 +135,12 @@
     }
 
     .video-item{
-      flex:0 0 100%;
+      flex:0 0 100vw;
       scroll-snap-align:center;
       position:relative;
-      aspect-ratio:16/9;
-      border-radius:var(--radius);
+      height:56.25vw; /* 16:9 real */
+      max-height:700px;
       overflow:hidden;
-      box-shadow:0 12px 30px rgba(0,0,0,0.6);
     }
 
     .video-item video{
@@ -193,46 +194,44 @@
       <img src="https://iili.io/q3dRaSV.md.png" alt="Planes y precios Gym Line">
     </section>
 
-    <!-- CARRUSEL DE VIDEOS -->
-    <section class="video-section">
-      <div class="video-carousel">
-
-        <!-- Video 1 NUEVO -->
-        <div class="video-item">
-          <video autoplay muted loop playsinline>
-            <source src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/2641310c-e868-4967-9010-aa570310ab86.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <!-- Video 2 (EL OTRO CAMBIADO) -->
-        <div class="video-item">
-          <video autoplay muted loop playsinline>
-            <source src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <!-- Video 3 ORIGINAL -->
-        <div class="video-item">
-          <video autoplay muted loop playsinline>
-            <source src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4" type="video/mp4">
-          </video>
-        </div>
-
-      </div>
-    </section>
-
-    <footer>
-      <div>© Gym Line — Entrená seguro, entrená inteligente</div>
-      <div>
-        Creado y diseñado por 
-        <a href="https://r-a-studio-nup2.onrender.com/" 
-           target="_blank" 
-           style="color: var(--green-1); font-weight:600;">
-           R.A Studio
-        </a>
-      </div>
-    </footer>
-
   </main>
+
+  <!-- 🎬 CARRUSEL FUERA DEL CONTAINER PARA QUE SEA GRANDE -->
+  <section class="video-section">
+    <div class="video-carousel">
+
+      <div class="video-item">
+        <video autoplay muted loop playsinline>
+          <source src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/2641310c-e868-4967-9010-aa570310ab86.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="video-item">
+        <video autoplay muted loop playsinline>
+          <source src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="video-item">
+        <video autoplay muted loop playsinline>
+          <source src="https://gvqkpggdzhxmoacrismr.supabase.co/storage/v1/object/public/Videos%20y%20fotos/c1f1d79d-339c-4521-aa79-e17ddb4f9a20.mp4" type="video/mp4">
+        </video>
+      </div>
+
+    </div>
+  </section>
+
+  <footer style="max-width:1100px;margin:40px auto 0 auto;padding:16px;display:flex;justify-content:space-between;flex-wrap:wrap;color:#bfc0c0;">
+    <div>© Gym Line — Entrená seguro, entrená inteligente</div>
+    <div>
+      Creado y diseñado por 
+      <a href="https://r-a-studio-nup2.onrender.com/" 
+         target="_blank" 
+         style="color: #d6f08a; font-weight:600;">
+         R.A Studio
+      </a>
+    </div>
+  </footer>
+
 </body>
 </html>
