@@ -20,13 +20,13 @@
     }
 
     *{box-sizing:border-box}
+
     body{
       margin:0;
       font-family: "Poppins", system-ui;
       background: linear-gradient(180deg,#07110a 0%, #081512 100%);
     }
 
-    a{color:inherit;text-decoration:none}
     .container{
       max-width:var(--max-width);
       margin:28px auto;
@@ -43,23 +43,24 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.45);
     }
 
-    /* LOGO IMAGEN */
+    /* LOGO REDONDO PERFECTO */
     .logo{
-      width:120px;
-      height:120px;
-      border-radius:14px;
+      width:130px;
+      height:130px;
+      border-radius:50%;
       background:white;
       display:flex;
       align-items:center;
       justify-content:center;
       overflow:hidden;
-      padding:10px;
+      flex-shrink:0;
     }
 
     .logo img{
       width:100%;
       height:100%;
-      object-fit:contain;
+      object-fit:cover;
+      object-position:center;
     }
 
     .brand{
@@ -73,7 +74,7 @@
       font-family:"Oswald";
       font-size:30px;
       margin:0;
-      color: #ffffff;
+      color:#ffffff;
     }
 
     .subtitle{
@@ -98,6 +99,7 @@
       cursor:pointer;
       border:none;
       transition:all .25s ease;
+      text-decoration:none;
     }
 
     .btn-primary{
@@ -124,8 +126,16 @@
     }
 
     @media (max-width:980px){
-      .hero{flex-direction:column;align-items:flex-start}
-      .logo{width:100px;height:100px}
+      .hero{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+      }
+
+      .logo{
+        width:110px;
+        height:110px;
+      }
     }
   </style>
 </head>
@@ -134,7 +144,7 @@
 
     <section class="hero">
       
-      <!-- LOGO ACTUAL -->
+      <!-- LOGO REDONDO -->
       <div class="logo">
         <img src="https://iili.io/q2yDmFt.th.png" alt="Logo Gym Line">
       </div>
