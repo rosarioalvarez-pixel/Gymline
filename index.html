@@ -1,506 +1,284 @@
-<!-- index.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Gym Line — Entrená seguro, entrená inteligente</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gym Line | Entrená Seguro</title>
 
-  <!-- Fuentes: Oswald para encabezados (estilo "gimnasio"), Poppins para el cuerpo -->
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      /* paleta inspirada en los iconos */
-      --green-1: #d6f08a; /* muy claro */
-      --green-2: #b8e34f; /* claro */
-      --green-3: #7fb82b; /* medio */
-      --green-4: #2f7a1f; /* oscuro */
-      --bg: #0f0f10;
-      --muted: #bfc0c0;
-      --max-width: 1100px;
-      --radius: 12px;
-    }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      color:#0b0b0b;
-      background: linear-gradient(180deg,#07110a 0%, #081512 100%);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
+body{
+    font-family:'Inter', sans-serif;
+    background:#0f0f0f;
+    color:white;
+}
 
-    a{color:inherit;text-decoration:none}
-    .container{
-      max-width:var(--max-width);
-      margin:28px auto;
-      padding:20px;
-    }
+h1,h2,h3{
+    font-family:'Oswald', sans-serif;
+    letter-spacing:1px;
+}
 
-    /* Header / Hero */
-    .hero{
-      display:flex;
-      gap:20px;
-      align-items:center;
-      background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      border-radius:var(--radius);
-      padding:18px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.45);
-      border:1px solid rgba(255,255,255,0.03);
-    }
-    .logo{
-      width:120px;
-      height:120px;
-      flex:0 0 120px;
-      border-radius:14px;
-      background: linear-gradient(180deg,var(--green-2),var(--green-3));
-      display:grid;
-      place-items:center;
-      color:white;
-      font-weight:700;
-      font-family:"Oswald";
-      font-size:22px;
-      box-shadow: 0 6px 18px rgba(47,122,31,0.18), inset 0 -4px 8px rgba(0,0,0,0.12);
-    }
-    .hero-info{
-      flex:1;
-      min-width:0;
-    }
-    .brand{
-      font-family:"Oswald";
-      color:var(--green-1);
-      font-size:20px;
-      letter-spacing:0.4px;
-      margin:0 0 6px 0;
-    }
-    .title{
-      font-family:"Oswald";
-      font-size:30px;
-      margin:0;
-      color: #ffffff;
-    }
-    .subtitle{
-      margin:8px 0 0 0;
-      color:var(--muted);
-      font-size:14px;
-    }
-    .hero-ctas{
-      display:flex;
-      gap:10px;
-      margin-top:12px;
-      flex-wrap:wrap;
-    }
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+
 .btn{
-  display:inline-flex;
-  gap:10px;
-  align-items:center;
-  padding:10px 16px;
-  border-radius:10px;
-  font-weight:600;
-  cursor:pointer;
-  border:none;
-  transition:all .25s ease;
-  text-decoration:none;
-  position:relative;
-  overflow:hidden;
+    display:inline-block;
+    padding:12px 28px;
+    background:#9cff00;
+    color:#000;
+    font-weight:600;
+    text-decoration:none;
+    transition:.3s;
 }
 
 .btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    background:#7dd400;
 }
 
-.btn-primary:hover{
-  filter:brightness(1.1);
+section{
+    padding:80px 0;
 }
 
-.btn-outline:hover{
-  background:rgba(255,255,255,0.05);
+/* HERO */
+
+.hero{
+    height:90vh;
+    background:linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.85)),
+    url('https://images.unsplash.com/photo-1558611848-73f7eb4001ab?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    display:flex;
+    align-items:center;
 }
-    /* Grid de características + imagen */
-    .grid{
-      margin-top:22px;
-      display:grid;
-      grid-template-columns: 1fr 420px;
-      gap:20px;
-      align-items:start;
+
+.hero h1{
+    font-size:70px;
+    line-height:1;
+}
+
+.hero span{
+    color:#9cff00;
+}
+
+.hero p{
+    margin:20px 0 30px;
+    font-size:18px;
+    color:#ccc;
+}
+
+/* ABOUT */
+
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.about img{
+    width:100%;
+    border:3px solid #9cff00;
+}
+
+.about h2{
+    font-size:40px;
+}
+
+.about p{
+    margin:20px 0;
+    color:#bbb;
+    line-height:1.6;
+}
+
+/* SERVICES */
+
+.services{
+    background:#151515;
+    text-align:center;
+}
+
+.services h2{
+    font-size:40px;
+    margin-bottom:60px;
+}
+
+.service-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:#1d1d1d;
+    padding:40px 25px;
+    border:1px solid #222;
+    transition:.3s;
+}
+
+.card:hover{
+    background:#9cff00;
+    color:#000;
+    transform:translateY(-8px);
+}
+
+.card h3{
+    margin-bottom:15px;
+}
+
+/* WHY US */
+
+.why{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:40px;
+    text-align:center;
+}
+
+.why-box{
+    border:1px solid #222;
+    padding:40px 20px;
+}
+
+.why-box h3{
+    color:#9cff00;
+    font-size:35px;
+}
+
+/* CTA */
+
+.cta{
+    background:#9cff00;
+    text-align:center;
+    color:#000;
+    padding:60px 20px;
+}
+
+.cta h2{
+    font-size:38px;
+    margin-bottom:20px;
+}
+
+/* FOOTER */
+
+footer{
+    background:#0a0a0a;
+    padding:40px 0;
+    text-align:center;
+    color:#777;
+    font-size:14px;
+}
+
+footer a{
+    color:#9cff00;
+    text-decoration:none;
+}
+
+@media(max-width:900px){
+    .about{
+        grid-template-columns:1fr;
     }
 
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      padding:18px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.02);
-      color:#e8e8e8;
+    .hero h1{
+        font-size:45px;
     }
-
-    .features{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap:14px;
-    }
-    .feature{
-      display:flex;
-      gap:12px;
-      align-items:center;
-    }
-    .feature .dot{
-      width:46px;height:46px;border-radius:10px;
-      background:linear-gradient(180deg,var(--green-2),var(--green-3));
-      display:grid;place-items:center;color:#042205;font-weight:700;font-family:"Oswald";
-      font-size:18px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-    }
-    .feature p{margin:0;font-size:14px;color:#dbe9c9}
-
-    /* horario y clases */
-    .schedule{
-      margin-top:14px;
-      display:flex;
-      gap:12px;
-      flex-direction:column;
-    }
-    .class-item{
-      display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:8px;
-      background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
-      border:1px solid rgba(255,255,255,0.02);
-    }
-    .class-item .name{font-weight:600;color:#fff}
-    .class-item .time{color:var(--muted);font-size:13px}
-
-    /* right column image */
-    .gym-photo{
-      width:100%;
-      height:100%;
-      min-height:320px;
-      border-radius:10px;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      justify-content:flex-end;
-      background-size:cover;
-      background-position:center;
-      position:relative;
-    }
-    .photo-tag{
-      display:flex;justify-content:space-between;align-items:center;padding:12px;background:linear-gradient(180deg, rgba(0,0,0,0.00), rgba(0,0,0,0.45));
-      color:#fff;font-weight:600;
-    }
-
-    /* testimonios y precios */
-    .two-col{
-      margin-top:20px;
-      display:grid;
-      grid-template-columns: 1fr 320px;
-      gap:20px;
-    }
-    .prices .price{
-      display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
-      color:#fff;border:1px solid rgba(255,255,255,0.02)
-    }
-    .price .amount{font-family:"Oswald";font-size:26px;color:var(--green-1)}
-
-    .testimonial{
-      margin-top:10px;
-      padding:12px;border-radius:10px;background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
-      border:1px solid rgba(255,255,255,0.02);
-      color:#eaf6d4;
-    }
-
-    /* footer */
-    footer{
-      margin-top:26px;padding:16px;border-radius:10px;color:var(--muted);
-      display:flex;justify-content:space-between;align-items:center;gap:16px;
-      flex-wrap:wrap;background:transparent;
-    }
-
-    /* responsive */
-    @media (max-width:980px){
-      .grid{grid-template-columns: 1fr;}
-      .two-col{grid-template-columns: 1fr;}
-      .hero{flex-direction:column;align-items:flex-start}
-      .logo{width:96px;height:96px;flex:0 0 96px}
-    }
-
-    @media (max-width:520px){
-      .brand{font-size:16px}
-      .title{font-size:22px}
-      .feature .dot{width:40px;height:40px;font-size:16px}
-      .hero-ctas{width:100%}
-      .btn{width:100%;justify-content:center}
-      .hero-info{width:100%}
-    }
-
-    /* small helper */
-    .muted{color:var(--muted);font-size:13px}
-  </style>
+}
+</style>
 </head>
+
 <body>
-  <main class="container">
 
-    <!-- HERO -->
-    <section class="hero" aria-label="Hero - Gym Line">
-      <div class="logo" role="img" aria-label="Logo Gym Line">
-        GYM
-      </div>
-
-      <div class="hero-info">
-        <div class="brand">ENTRENÁ SEGURO · ENTRENÁ INTELIGENTE</div>
-        <h1 class="title">Gym Line — San Miguel</h1>
-        <p class="subtitle">Clases guiadas, entrenadores certificados, y un ambiente pensado para que mejores sin lesiones.</p>
-
-        <div class="hero-ctas">
-          <!-- WhatsApp CTA: reemplaza el número si es necesario -->
-          <a class="btn btn-primary" href="https://wa.me/541159117171" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
-            💬 Reservar por WhatsApp
-          </a>
-          <a class="btn btn-outline" href="#horarios" aria-label="Ver horarios">
-            Ver horarios y clases
-          </a>
-        </div>
-
-        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-          <div class="muted">📍 Rodríguez Peña 948, San Miguel</div>
-          <div class="muted">📱 11 5911 7171</div>
-          <div class="muted">🕒 Lun - Vie 7:00 - 22:00</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- GRID: características + foto -->
-    <section class="grid" aria-label="Características y foto del gimnasio">
-      <div>
-        <div class="card">
-          <h3 style="margin:0 0 10px 0;font-family:'Oswald'">Lo que ofrecemos</h3>
-
-          <div class="features" aria-hidden="false">
-            <div class="feature">
-              <div class="dot">ST</div>
-              <p><strong>Stretching guiado</strong><br><span class="muted">Recuperación y flexibilidad</span></p>
-            </div>
-
-            <div class="feature">
-              <div class="dot">FU</div>
-              <p><strong>Full Body</strong><br><span class="muted">Clases funcionales intensas</span></p>
-            </div>
-
-            <div class="feature">
-              <div class="dot">MU</div>
-              <p><strong>Musculación</strong><br><span class="muted">Máquinas y asesoramiento</span></p>
-            </div>
-
-            <div class="feature">
-              <div class="dot">CO</div>
-              <p><strong>Core & HIIT</strong><br><span class="muted">Entrenamientos 360º</span></p>
-            </div>
-          </div>
-
-          <div class="schedule" id="horarios">
-            <h4 style="margin:14px 0 6px 0;font-family:'Oswald'">Horarios destacados</h4>
-            <div class="class-item"><div class="name">Full Body - Lun a Vie</div><div class="time">7:00 · 12:00 · 19:00</div></div>
-            <div class="class-item"><div class="name">Musculación - Asesorado</div><div class="time">9:00 - 21:00</div></div>
-            <div class="class-item"><div class="name">Stretching (Sábados)</div><div class="time">9:00 - 10:00</div></div>
-          </div>
-
-        </div>
-
-        <div class="card" style="margin-top:16px">
-          <h3 style="margin:0 0 10px 0;font-family:'Oswald'">Planes</h3>
-          <div class="prices">
-            <div class="price" style="display:flex;justify-content:space-between;align-items:center">
-              <div>
-                <div class="muted">Mensual</div>
-                <div class="amount">$4.200</div>
-              </div>
-              <div style="text-align:right">
-                <div class="muted">Acceso libre</div>
-                <div class="muted">Clases incluidas</div>
-              </div>
-            </div>
-
-            <div class="price" style="margin-top:8px;display:flex;justify-content:space-between;align-items:center">
-              <div>
-                <div class="muted">Paquete 3 meses</div>
-                <div class="amount">$11.700</div>
-              </div>
-              <div style="text-align:right">
-                <div class="muted">Ahorro 8%</div>
-              </div>
-            </div>
-          </div>
-
-          <div style="margin-top:12px">
-            <a class="btn btn-primary" href="https://wa.me/541159117171" target="_blank" rel="noopener noreferrer">Quiero reservar</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- FOTO / VIDEO -->
-      <aside>
-        <div class="gym-photo card" style="background-image: url('https://images.unsplash.com/photo-1546484959-f8b0c4c10be6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=60');">
-          <!-- Reemplaza la URL anterior por una foto del gimnasio o un video convertido a poster -->
-          <div class="photo-tag">
-            <div>
-              <div style="font-weight:700">CORE 360° · Profe Gus</div>
-              <div class="muted">Clases dinámicas y completas</div>
-            </div>
-            <div style="display:flex;gap:10px">
-              <a class="btn btn-outline" href="#horarios">Ver clases</a>
-              <a class="btn btn-primary" href="https://wa.me/541159117171" target="_blank" rel="noopener noreferrer">Reservar</a>
-            </div>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <!-- testimonios y mapa -->
-    <section class="two-col" aria-label="Testimonios y contacto">
-      <div>
-        <div class="card">
-          <h3 style="margin:0 0 10px 0;font-family:'Oswald'">Testimonios</h3>
-
-          <div class="testimonial">
-            "Me recuperé de una lesión y volví más fuerte. Muy recomendables los planes personalizados." — <strong>Martina</strong>
-          </div>
-
-          <div class="testimonial" style="margin-top:10px">
-            "Entrenadores que realmente corrigen la técnica. Ambiente friendly y profesional." — <strong>Julián</strong>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:12px">
-          <h3 style="margin:0 0 10px 0;font-family:'Oswald'">Preguntas rápidas</h3>
-          <p class="muted">¿Tenés entrenamiento personalizado? <strong style="color:var(--green-1)">Sí</strong></p>
-          <p class="muted">¿Se puede pagar con tarjeta? <strong style="color:var(--green-1)">Sí</strong></p>
-          <p class="muted">Promoción de primera inscripción: <strong style="color:var(--green-1)">1 semana gratis</strong></p>
-        </div>
-      </div>
-
-      <aside class="card" style="height:100%;display:flex;flex-direction:column;gap:12px;justify-content:flex-start">
-        <h3 style="margin:0;font-family:'Oswald'">Contacto</h3>
-        <div class="muted">📍 Rodríguez Peña 948, San Miguel</div>
-        <div class="muted">📞 11 5911 7171</div>
-        <div style="margin-top:6px">
-          <a class="btn btn-primary" href="https://wa.me/541159117171" target="_blank" rel="noopener noreferrer">Chatear por WhatsApp</a>
-        </div>
-
-        <div style="margin-top:auto">
-          <h4 style="margin:8px 0 6px 0;font-family:'Oswald'">Síguenos</h4>
-          <div style="display:flex;gap:8px">
-            <a class="btn btn-outline" href="#" aria-label="Instagram">Instagram</a>
-            <a class="btn btn-outline" href="#" aria-label="Facebook">Facebook</a>
-          </div>
-        </div>
-      </aside>
-    </section>
-<!-- FORMULARIO DE INSCRIPCIÓN -->
-<section class="card" style="margin-top:20px">
-  <h3 style="margin:0 0 14px 0;font-family:'Oswald'">Inscribite ahora</h3>
-
-  <form id="formGym" style="display:flex;flex-direction:column;gap:12px">
-
-    <input type="text" id="nombre" placeholder="Tu nombre" required
-      style="padding:10px;border-radius:8px;border:none;outline:none">
-
-    <input type="tel" id="telefono" placeholder="Tu teléfono" required
-      style="padding:10px;border-radius:8px;border:none;outline:none">
-
-    <select id="plan" required
-      style="padding:10px;border-radius:8px;border:none;outline:none">
-
-      <option value="">Seleccionar plan</option>
-
-      <option>Inscripción - $11.000 cash / $13.000 online</option>
-
-      <option>Pase Completo - $45.000 cash / $49.000 online</option>
-      <option>Pase Completo + Indoor - $49.000 cash / $53.000 online</option>
-      <option>Indoor Bike - $45.000 cash / $49.000 online</option>
-
-      <option>Pilates x4 - $40.000 cash / $45.000 online</option>
-      <option>Pilates x8 - $52.000 cash / $58.000 online</option>
-      <option>Pilates x12 - $62.000 cash / $69.000 online</option>
-      <option>Pilates x20 - $76.000 cash / $83.000 online</option>
-
-      <option>Clase Pilates - $18.000 cash / $23.000 online</option>
-      <option>Clase Pilates (Promo) - $17.500 cash / $19.000 online</option>
-
-      <option>Pilates + Indoor - $45.000 cash / $49.000 online</option>
-
-      <option>Día Gym - $10.500 cash / $15.500 online</option>
-
-      <option>Pase Completo + Pilates - $57.000 cash / $62.000 online</option>
-
-      <option>Boxeo - $40.000 cash / $45.000 online</option>
-
-      <option>Personalizado - $80.000 cash / $75.000 online</option>
-
-    </select>
-
-    <select id="pago" required
-      style="padding:10px;border-radius:8px;border:none;outline:none">
-      <option value="">Forma de pago</option>
-      <option>Cash</option>
-      <option>Pago Online</option>
-    </select>
-
-    <button type="submit" class="btn btn-primary">
-      Enviar y reservar por WhatsApp
-    </button>
-
-  </form>
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <h1>GYM <span>LINE</span></h1>
+        <p>Entrená seguro, entrená inteligente.<br>
+        Tu mejor versión empieza hoy.</p>
+        <a href="https://wa.me/541159117171" class="btn">Inscribite por WhatsApp</a>
+    </div>
 </section>
 
-<script>
-document.getElementById("formGym").addEventListener("submit", function(e){
-  e.preventDefault();
+<!-- ABOUT -->
+<section>
+    <div class="container about">
+        <div>
+            <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=800&q=80">
+        </div>
+        <div>
+            <h2>Entrenamiento Profesional en San Miguel</h2>
+            <p>En Gym Line trabajamos para que entrenes de forma segura y eficiente. Contamos con profesores capacitados, equipamiento moderno y clases dinámicas para todos los niveles.</p>
+            <p>Estamos ubicados en Rodríguez Peña 948, San Miguel.</p>
+            <a href="https://wa.me/541159117171" class="btn">Solicitar Información</a>
+        </div>
+    </div>
+</section>
 
-  const nombre = document.getElementById("nombre").value;
-  const telefono = document.getElementById("telefono").value;
-  const plan = document.getElementById("plan").value;
-  const pago = document.getElementById("pago").value;
+<!-- SERVICES -->
+<section class="services">
+    <div class="container">
+        <h2>NUESTROS PROGRAMAS</h2>
 
-  const mensaje = `Hola! Quiero inscribirme en Gym Line.%0A
-Nombre: ${nombre}%0A
-Teléfono: ${telefono}%0A
-Plan elegido: ${plan}%0A
-Forma de pago: ${pago}`;
+        <div class="service-grid">
+            <div class="card">
+                <h3>Musculación</h3>
+                <p>Entrenamiento de fuerza con seguimiento profesional.</p>
+            </div>
 
-  window.open(`https://wa.me/541159117171?text=${mensaje}`, "_blank");
-});
-</script>
+            <div class="card">
+                <h3>Indoor Bike</h3>
+                <p>Clases intensas para mejorar resistencia y quemar calorías.</p>
+            </div>
+
+            <div class="card">
+                <h3>Stretching</h3>
+                <p>Mejorá tu movilidad y prevení lesiones.</p>
+            </div>
+
+            <div class="card">
+                <h3>Full Body</h3>
+                <p>Entrenamiento integral para todo el cuerpo.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHY US -->
+<section>
+    <div class="container why">
+        <div class="why-box">
+            <h3>+6K</h3>
+            <p>Alumnos entrenando</p>
+        </div>
+
+        <div class="why-box">
+            <h3>+10</h3>
+            <p>Profesores capacitados</p>
+        </div>
+
+        <div class="why-box">
+            <h3>100%</h3>
+            <p>Compromiso con tu progreso</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2>¿Listo para empezar?</h2>
+    <a href="https://wa.me/541159117171" class="btn">Inscribirme Ahora</a>
+</section>
 
 <footer>
-  <div class="muted">© Gym Line — Entrená seguro, entrená inteligente</div>
-
-  <div class="muted">
-    Creado y diseñado por 
-    <a href="https://r-a-studio-nup2.onrender.com/" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       style="color: var(--green-1); font-weight:600; text-decoration:none;">
-       R.A Studio
-    </a>
-  </div>
+    © 2026 Gym Line | Entrená Seguro, Entrená Inteligente <br><br>
+    Creado y diseñado por <a href="https://r-a-studio-nup2.onrender.com/" target="_blank">R.A Studio</a>
 </footer>
 
-  <script>
-    // Pequeños helpers si querés ampliar:
-    // 1) Agregar captura de email, formulario o integración con Google Analytics
-    // 2) Reemplazar imágenes por los assets reales del gimnasio
-    // No hay dependencias externas para mantener el HTML ligero.
-
-    // Ejemplo: smooth scroll para anclas internas
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', function(e){
-        e.preventDefault();
-        const id = this.getAttribute('href').slice(1);
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
-      });
-    });
-  </script>
 </body>
 </html>
